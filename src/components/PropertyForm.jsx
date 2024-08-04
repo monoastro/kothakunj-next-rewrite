@@ -5,7 +5,6 @@ const PropertyForm = () => {
   const [province, setProvince] = useState("");
   const [districts, setDistricts] = useState([]);
   const [formData, setFormData] = useState({
-    location: "",
     city: "",
     area: "",
     bedrooms: 0,
@@ -23,22 +22,6 @@ const PropertyForm = () => {
     gallery: null,
   });
   const { theme } = useTheme();
-
-  const districtData = {
-    Koshi: ["Ilam", "Jhapa", "Taplejung", "Tehrathum", "Sankhuwasabha", "Panchthar", "Morang", "Sunsari"],
-    Madhesh: ["Saptari", "Siraha", "Dhanusha", "Mahottari", "Sarlahi", "Rautahat", "Bara", "Parsa"],
-    Bagmati: ["Bhaktapur", "Kathmandu", "Lalitpur", "Dhading", "Dolakha", "Makwanpur", "Nuwakot", "Ramechhap", "Rasuwa", "Sindhuli", "Sindhupalchok"],
-    Gandaki: ["Baglung", "Gorkha", "Kaski", "Lamjung", "Manang", "Mustang", "Myagdi", "Parbat", "Syangja", "Tanahu"],
-    Lumbini: ["Arghakhanchi", "Banke", "Bardiya", "Dang", "Gulmi", "Kapilvastu", "Palpa", "Parasi", "Rolpa", "Rukum", "Salyan", "Dang"],
-    Karnali: ["Jajarkot", "Jumla", "Kalikot", "Mugu", "Dolpa", "Humla"],
-    Sudhurpaschim: ["Baitadi", "Dadeldhura", "Darchula", "Kailali", "Kanchanpur"],
-  };
-
-  const handleProvinceChange = (e) => {
-    const selectedProvince = e.target.value;
-    setProvince(selectedProvince);
-    setDistricts(districtData[selectedProvince] || []);
-  };
 
   const handleInputChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -71,11 +54,19 @@ const PropertyForm = () => {
       formPayload.append(key, value);
     });
 
+    const token = localStorage.getItem("accessToken");
+
     try {
-      const response = await fetch("API_URL_HERE", {
+      const response = await fetch("http://localhost:5000/api/v1/rooms", {
         method: "POST",
         body: formPayload,
+        // add authtoken using JWT
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        }
       });
+      console.log(formPayload);
 
       if (response.ok) {
         alert("Property posted successfully!");
@@ -92,10 +83,10 @@ const PropertyForm = () => {
 
   return (
     <div
-        className={`w-full h-full mx-auto ${
-          theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
-        } shadow-md rounded-lg`}
-      >
+      className={`w-full h-full mx-auto ${
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
+      } shadow-md rounded-lg`}
+    >
       <div
         className={`w-4/5 h-full mx-auto p-4 ${
           theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
@@ -108,77 +99,6 @@ const PropertyForm = () => {
           Before Post Your Property You Need To Login First
         </p>
         <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label
-              className={`block ${
-                theme === "dark" ? "text-white" : "text-gray-700"
-              }`}
-            >
-              Enter your property location*
-            </label>
-            <input
-              className={`w-full p-2 border border-gray-300 rounded ${
-                theme === "dark" ? "bg-gray-700 text-white" : ""
-              }`}
-              type="text"
-              name="location"
-              value={formData.location}
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label
-                className={`block ${
-                  theme === "dark" ? "text-white" : "text-gray-700"
-                }`}
-              >
-                Province*
-              </label>
-              <select
-                className={`w-full p-2 border border-gray-300 rounded ${
-                  theme === "dark" ? "bg-gray-700 text-white" : ""
-                }`}
-                value={province}
-                onChange={handleProvinceChange}
-              >
-                <option value="" disabled>
-                  Select your Province
-                </option>
-                <option value="Koshi">Koshi</option>
-                <option value="Madhesh">Madhesh</option>
-                <option value="Bagmati">Bagmati</option>
-                <option value="Gandaki">Gandaki</option>
-                <option value="Lumbini">Lumbini</option>
-                <option value="Karnali">Karnali</option>
-                <option value="Sudhurpaschim">Sudhurpaschim</option>
-              </select>
-            </div>
-            <div>
-              <label
-                className={`block ${
-                  theme === "dark" ? "text-white" : "text-gray-700"
-                }`}
-              >
-                District*
-              </label>
-              <select
-                className={`w-full p-2 border border-gray-300 rounded ${
-                  theme === "dark" ? "bg-gray-700 text-white" : ""
-                }`}
-                name="district"
-                value={formData.district}
-                onChange={handleInputChange}
-              >
-                <option value="">Choose District</option>
-                {districts.map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label
@@ -505,14 +425,14 @@ const PropertyForm = () => {
           </div>
           <div className="text-center">
             <button
+              onClick={handleSubmit}
               type="submit"
               className={`px-4 py-2 rounded hover:bg-blue-600 ${
                 theme === "dark"
                   ? "bg-gray-700 text-white"
                   : "bg-blue-500 text-white"
               } transition duration-300`}
-            >
-              Post Your Room
+            >Submit
             </button>
           </div>
         </form>
