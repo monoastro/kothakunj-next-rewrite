@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -25,3 +26,7 @@ dist-ssr
 
 
 /node_modules
+=======
+node_modules
+build
+>>>>>>> e3be228a42d163689ed5979710ede75da310d4dc
