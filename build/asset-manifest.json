@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/kothakunj/static/css/main.986cb3de.css",
+    "main.js": "/kothakunj/static/js/main.eb3c3a7a.js",
+    "static/media/Ashish.jpg": "/kothakunj/static/media/Ashish.4c7c3072dece0b26a56d.jpg",
+    "static/media/Jatin.jpg": "/kothakunj/static/media/Jatin.af6d12dad9df7923868f.jpg",
+    "static/media/Hero_image.png": "/kothakunj/static/media/Hero_image.1ad630f546ed5fadcac0.png",
+    "static/media/Mukesh.jpg": "/kothakunj/static/media/Mukesh.3c9f3b05041d7ad9b346.jpg",
+    "static/media/logo.png": "/kothakunj/static/media/logo.435e8526f33127c87a72.png",
+    "static/media/slick.svg": "/kothakunj/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/kothakunj/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/kothakunj/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/kothakunj/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/kothakunj/index.html",
+    "main.986cb3de.css.map": "/kothakunj/static/css/main.986cb3de.css.map",
+    "main.eb3c3a7a.js.map": "/kothakunj/static/js/main.eb3c3a7a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.986cb3de.css",
+    "static/js/main.eb3c3a7a.js"
+  ]
+}

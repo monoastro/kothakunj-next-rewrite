@@ -49,32 +49,21 @@ const PropertyForm = () => {
     e.preventDefault();
 
     const formPayload = new FormData();
-
     Object.entries(formData).forEach(([key, value]) => {
       formPayload.append(key, value);
     });
 
-<<<<<<< HEAD
     const token = localStorage.getItem("accessToken");
 
     try {
       const response = await fetch("http://localhost:5000/api/v1/rooms", {
         method: "POST",
         body: formPayload,
-        // add authtoken using JWT
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
-        }
+        },
       });
-      console.log(formPayload);
-=======
-    try {
-      const response = await fetch("API_URL_HERE", {
-        method: "POST",
-        body: formPayload,
-      });
->>>>>>> e3be228a42d163689ed5979710ede75da310d4dc
 
       if (response.ok) {
         alert("Property posted successfully!");
@@ -433,22 +422,14 @@ const PropertyForm = () => {
           </div>
           <div className="text-center">
             <button
-<<<<<<< HEAD
-              onClick={handleSubmit}
-=======
->>>>>>> e3be228a42d163689ed5979710ede75da310d4dc
               type="submit"
               className={`px-4 py-2 rounded hover:bg-blue-600 ${
                 theme === "dark"
                   ? "bg-gray-700 text-white"
                   : "bg-blue-500 text-white"
               } transition duration-300`}
-<<<<<<< HEAD
-            >Submit
-=======
             >
               Post Your Room
->>>>>>> e3be228a42d163689ed5979710ede75da310d4dc
             </button>
           </div>
         </form>
@@ -457,8 +438,4 @@ const PropertyForm = () => {
   );
 };
 
-<<<<<<< HEAD
 export default PropertyForm;
-=======
-export default PropertyForm;
->>>>>>> e3be228a42d163689ed5979710ede75da310d4dc

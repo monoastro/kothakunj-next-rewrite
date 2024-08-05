@@ -1,4 +1,4 @@
-// import React, { useContext } from 'react';
+import React from 'react';
 import { useTheme } from '../ThemeContext'; // Import the theme context
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
