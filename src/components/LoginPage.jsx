@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function LoginPage({ onLogin }) {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const { setAuthData } = useAuth();
+  const { setAuthToken } = useAuth(); // Use setAuthToken from AuthContext
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -32,7 +32,7 @@ function LoginPage({ onLogin }) {
       const data = await response.json();
 
       if (response.ok) {
-        setAuthData(data.token);
+        setAuthToken(data.token); // Save token to context and localStorage
         onLogin();
         alert("Login successful");
       } else {

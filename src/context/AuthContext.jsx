@@ -1,43 +1,28 @@
 
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import PropTypes from 'prop-types';
+import React, { createContext, useContext, useState } from "react";
 
-// Create a context for authentication
 const AuthContext = createContext();
 
-// Custom hook to use the AuthContext
-export const useAuth = () => {
-  return useContext(AuthContext);
-};
+export const useAuth = () => useContext(AuthContext);
 
-// AuthProvider component that wraps the app and provides auth state
 export const AuthProvider = ({ children }) => {
-  const [authData, setAuthData] = useState(() => {
-    // Retrieve the token from localStorage, if available
-    const token = localStorage.getItem('authToken');
-    return token ? { token } : null;
-  });
+  const [authData, setAuthData] = useState(
+    localStorage.getItem("authToken") || null
+  );
 
-  // Set the token in localStorage and state
-  const saveAuthData = (token) => {
-    localStorage.setItem('authToken', token);
-    setAuthData({ token });
+  const setAuthToken = (token) => {
+    setAuthData(token);
+    localStorage.setItem("authToken", token);
   };
 
-  // Remove the token from localStorage and state
-  const logout = () => {
-    localStorage.removeItem('authToken');
+  const clearAuthToken = () => {
     setAuthData(null);
+    localStorage.removeItem("authToken");
   };
 
-  // Provide the auth state and actions to children components
   return (
-    <AuthContext.Provider value={{ authData, setAuthData: saveAuthData, logout }}>
+    <AuthContext.Provider value={{ authData, setAuthToken, clearAuthToken }}>
       {children}
     </AuthContext.Provider>
   );
-};
-
-AuthProvider.propTypes = {
-  children: PropTypes.node.isRequired,
 };
