@@ -1,8 +1,27 @@
+// import React from 'react';
+// import { createRoot } from 'react-dom/client';
+// import './index.css';
+// import App from './App';
+// import { ThemeProvider } from './ThemeContext';
+
+// const container = document.getElementById('root');
+// const root = createRoot(container); 
+
+// root.render(
+//   <React.StrictMode>
+//     <ThemeProvider>
+//       <App />
+//     </ThemeProvider>
+//   </React.StrictMode>
+// );
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App';
 import { ThemeProvider } from './ThemeContext';
+import { AuthProvider } from "./context/AuthContext"; 
+
 
 const container = document.getElementById('root');
 const root = createRoot(container); 
@@ -10,7 +29,9 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <App />
+      <AuthProvider> 
+        <App />
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
