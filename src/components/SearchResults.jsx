@@ -1,5 +1,5 @@
-import { useTheme } from "../ThemeContext";
 import React, { useState } from "react";
+import { useTheme } from "../ThemeContext";
 
 const SearchResults = () => {
   const { theme } = useTheme();
@@ -235,7 +235,7 @@ const SearchResults = () => {
                     }`}
                   ></textarea>
                 </div>
-                <div class="flex justify-center">
+                <div className="flex justify-center">
                   <button
                     type="submit"
                     className={`w-40 px-3 py-3 ${

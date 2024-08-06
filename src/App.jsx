@@ -1,17 +1,14 @@
-// import axios from "axios";
-
 import React from 'react';
-import Header from "./components/Header";
-import Team from "./components/Team";
-import Footer from "./components/Footer";
+import MyRoutes from './Routes'; // Adjust the path if necessary
+import './index.css';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Team />
-      <Footer />
+      <MyRoutes />
     </div>
   );
 }
+
 export default App;
+

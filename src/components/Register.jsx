@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 function Register() {
   return (
@@ -73,12 +74,15 @@ function Register() {
               type="submit"
               className="w-40 bg-orange-500 text-white py-3 rounded hover:bg-orange-600"
             >
-              Sign In
+              Register
             </button>
           </div>
         </form>
         <p className="text-center text-gray-700 mt-6">
-          Already have an account? <a href="#" className="text-blue-500">Sign In</a>
+          Already have an account?{' '}
+          <Link to="/" className="text-blue-500">
+            Sign In
+          </Link>
         </p>
       </div>
     </div>

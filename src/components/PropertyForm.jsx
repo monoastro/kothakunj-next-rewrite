@@ -423,11 +423,7 @@ const PropertyForm = () => {
           <div className="text-center">
             <button
               type="submit"
-              className={`px-4 py-2 rounded hover:bg-blue-600 ${
-                theme === "dark"
-                  ? "bg-gray-700 text-white"
-                  : "bg-blue-500 text-white"
-              } transition duration-300`}
+              className={`px-3 py-3 hover:bg-orange-600 ${theme === "dark" ? 'bg-gray-600 hover:bg-gray-700' : 'bg-orange-500 hover:bg-orange-900'} transition duration-300 text-white rounded`}
             >
               Post Your Room
             </button>
