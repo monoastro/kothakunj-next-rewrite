@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
@@ -254,6 +253,14 @@ function Header() {
               rating={5}
               onClose={handleCloseProfile}
             />
+            {/* <ProfileCard
+              name="John Doe"
+              category="Host"
+              description="Friendly host with a spacious room."
+              reviews={5}
+              reviewAuthor="Alice"
+              rating={4.5}
+            /> */}
           </div>
         </div>
       )}
@@ -261,7 +268,10 @@ function Header() {
       {showLoginPage && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full relative">
-            <LoginPage onClose={handleCloseLoginPage} onLogin={handleLoginSubmit} />
+            <LoginPage
+              onClose={handleCloseLoginPage}
+              onLogin={handleLoginSubmit}
+            />
           </div>
         </div>
       )}

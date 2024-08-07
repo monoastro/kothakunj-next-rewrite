@@ -60,7 +60,7 @@ const PropertyForm = () => {
         method: "POST",
         body: formPayload,
         headers: {
-          "Content-Type": "application/json",
+          // "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });

@@ -1,5 +1,5 @@
 import React from 'react';
-import MyRoutes from './Routes'; // Adjust the path if necessary
+import MyRoutes from './Routes'; 
 import './index.css';
 
 function App() {

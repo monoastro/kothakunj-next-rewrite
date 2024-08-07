@@ -1,76 +1,36 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useTheme } from "../ThemeContext";
 
-const SearchResults = () => {
+const SearchResults = ({ results }) => {
   const { theme } = useTheme();
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
+  const [reviews, setReviews] = useState([]);
 
-  const sampleResults = [
-    {
-      id: 1,
-      name: "Cozy Studio",
-      price: "5000",
-      type: "Flat",
-      location: "Baneshwor, Kathmandu",
-      imageUrl: "https://via.placeholder.com/150",
-      rooms: "1 BHK",
-      size: "450 sqft",
-      description:
-        "A cozy studio apartment located in the heart of the city, perfect for singles or couples.",
-      reviews: [
-        { rating: 4, comment: "Great place, very cozy and clean!" },
-        { rating: 5, comment: "Amazing experience, highly recommend!" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Spacious 2 BHK",
-      price: "15000",
-      type: "Apartment",
-      location: "Kalanki, Kathmandu",
-      imageUrl: "https://via.placeholder.com/150",
-      rooms: "2 BHK",
-      size: "850 sqft",
-      description:
-        "A spacious 2 BHK apartment with modern amenities, located in a serene neighborhood.",
-      reviews: [
-        { rating: 3, comment: "Nice place but a bit pricey." },
-        { rating: 4, comment: "Spacious and well-maintained." },
-      ],
-    },
-    {
-      id: 3,
-      name: "Affordable Room",
-      price: "7000",
-      type: "Room",
-      location: "Kupondole, Kathmandu",
-      imageUrl: "https://via.placeholder.com/150",
-      rooms: "1 BHK",
-      size: "300 sqft",
-      description:
-        "An affordable room in a quiet area, ideal for students or young professionals.",
-      reviews: [
-        { rating: 2, comment: "Could be cleaner." },
-        { rating: 3, comment: "Good for the price." },
-      ],
-    },
-  ];
-
-  const handleToggleDetails = (id) => {
+  const handleToggleDetails = async (id) => {
     setSelectedProperty(selectedProperty === id ? null : id);
+    if (selectedProperty !== id) {
+      try {
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/reviews/${id}`
+        );
+        setReviews(response.data);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    }
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % sampleResults.length);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % results.length);
   };
 
   const handlePrev = () => {
     setCurrentIndex(
-      (prevIndex) =>
-        (prevIndex - 1 + sampleResults.length) % sampleResults.length
+      (prevIndex) => (prevIndex - 1 + results.length) % results.length
     );
   };
 
@@ -78,14 +38,37 @@ const SearchResults = () => {
     setRating(rate);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the form submission
-    console.log("Rating:", rating);
-    console.log("Comment:", comment);
+    if (!rating || !comment) {
+      alert("Please provide a rating and comment.");
+      return;
+    }
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/v1/reviews",
+        {
+          room_id: results[currentIndex].id,
+          user_id: 1, // Replace with actual user ID
+          rating,
+          comment,
+        }
+      );
+      console.log("Review submitted:", response.data);
+      setReviews([...reviews, response.data]);
+      setRating(0);
+      setComment("");
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      alert("There was an error submitting your review. Please try again.");
+    }
   };
 
-  const currentProperty = sampleResults[currentIndex];
+  if (results.length === 0) {
+    return <p>No results found.</p>;
+  }
+
+  const currentProperty = results[currentIndex];
 
   return (
     <div className="w-full h-1/2 p-2 pb-11">
@@ -162,87 +145,67 @@ const SearchResults = () => {
               Next
             </button>
           </div>
-        </div>
-        {selectedProperty === currentProperty.id && (
           <div className="mt-6">
-            <h4 className="text-lg font-semibold mb-2">Reviews:</h4>
-            {currentProperty.reviews.map((review, index) => (
-              <div key={index} className="mb-2 p-2 border rounded-lg">
-                <p className="font-semibold">Rating: {review.rating}</p>
-                <p>{review.comment}</p>
-              </div>
-            ))}
-          </div>
-        )}
-        <div className="mt-6">
-          <div
-            className={`flex justify-center items-center ${
-              theme === "dark"
-                ? "bg-gray-800 text-white"
-                : "bg-gray-100 text-gray-700"
-            }`}
-          >
             <div
-              className={`bg-white p-4 md:p-6 rounded-md shadow-md w-[62%] flex flex-col ${
-                theme === "dark" ? "dark:bg-gray-700 dark:text-white" : ""
+              className={`border border-gray-200 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 w-full ${
+                theme === "dark" ? "bg-gray-600" : ""
               }`}
             >
-              <h2
-                className={`text-2xl font-semibold mb-4 md:mb-8 ${
-                  theme === "dark" ? "dark:text-gray-200" : ""
-                }`}
-              >
-                Provide Your Review
-              </h2>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label
-                    className={`block mb-2 ${
-                      theme === "dark" ? "dark:text-gray-300" : ""
-                    }`}
-                  >
-                    Rating:
-                  </label>
-                  <div className="flex space-x-2">
-                    {[1, 2, 3, 4, 5].map((rate) => (
-                      <button
-                        key={rate}
-                        type="button"
-                        className={`w-10 h-10 flex items-center justify-center border rounded-full ${
-                          rate <= rating ? "bg-yellow-500" : "bg-gray-300"
-                        }`}
-                        onClick={() => handleRating(rate)}
-                      >
-                        {rate}
-                      </button>
-                    ))}
+              <h4 className="text-lg font-semibold mb-4">Reviews</h4>
+              {reviews.length > 0 ? (
+                reviews.map((review) => (
+                  <div key={review.id} className="mb-4">
+                    <p className="text-gray-700">
+                      <strong>Rating:</strong> {review.rating} stars
+                    </p>
+                    <p className="text-gray-700">
+                      <strong>Comment:</strong> {review.comment}
+                    </p>
                   </div>
-                </div>
-                <div>
-                  <label
-                    className={`block mb-2 ${
-                      theme === "dark" ? "dark:text-gray-300" : ""
+                ))
+              ) : (
+                <p className="text-gray-700">No reviews yet.</p>
+              )}
+              <form onSubmit={handleSubmit} className="mt-4">
+                <div className="mb-4">
+                  <label className="block text-gray-700 mb-2">Rating:</label>
+                  <select
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 ${
+                      theme === "dark"
+                        ? "dark:bg-gray-800 dark:border-gray-600"
+                        : ""
                     }`}
                   >
-                    Comment:
-                  </label>
+                    <option value="">Select Rating</option>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <option key={star} value={star}>
+                        {star} Star{star > 1 && "s"}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="mb-4">
+                  <label className="block text-gray-700 mb-2">Comment:</label>
                   <textarea
-                    placeholder="Your Comment"
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
-                    className={`w-full px-3 py-3 border border-gray-300 rounded ${
-                      theme === "dark" ? "dark:bg-gray-600 dark:text-white" : ""
+                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-blue-500 ${
+                      theme === "dark"
+                        ? "dark:bg-gray-800 dark:border-gray-600"
+                        : ""
                     }`}
                   ></textarea>
                 </div>
-                <div className="flex justify-center">
+                <div>
                   <button
                     type="submit"
-                    className={`w-40 px-3 py-3 ${
+                    className={`bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg transition-colors duration-300 ${
                       theme === "dark"
-                        ? "bg-gray-600 hover:bg-gray-700"
-                        : "bg-orange-500 hover:bg-orange-900"
-                    } text-white rounded`}
+                        ? "dark:bg-yellow-600 dark:hover:bg-yellow-700"
+                        : ""
+                    }`}
                   >
                     Submit
                   </button>

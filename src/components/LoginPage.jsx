@@ -20,6 +20,14 @@ function LoginPage({ onLogin }) {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
+    // Check for the special login credentials
+    if (email === "ashishkandel127@gmail.com" && password === "ashishnaiho") {
+      setAuthToken("special-token"); // Set a token for the special login case
+      onLogin();
+      alert("Login successful");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/login", {
         method: "POST",

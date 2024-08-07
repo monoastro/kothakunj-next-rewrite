@@ -38,14 +38,14 @@ const Featured = () => {
   const handlePrevPhotoClick = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === 0
-        ? rooms[currentRoomIndex].photos.length - 1
+        ? rooms[currentRoomIndex].gallery.length - 1
         : prevIndex - 1
     );
   };
 
   const handleNextPhotoClick = () => {
     setCurrentPhotoIndex((prevIndex) =>
-      prevIndex === rooms[currentRoomIndex].photos.length - 1
+      prevIndex === rooms[currentRoomIndex].gallery.length - 1
         ? 0
         : prevIndex + 1
     );
@@ -60,10 +60,21 @@ const Featured = () => {
   }
 
   const {
-    title,
+    city,
+    area,
+    bedrooms,
+    bathrooms,
+    room_size,
+    kitchen_rooms,
+    extra_room,
+    rent,
+    price_range,
+    amenities,
+    furnished,
+    preferred_gender,
     description,
-    price_per_month,
-    photos = [],
+    house_front_picture,
+    gallery = [],
   } = rooms[currentRoomIndex];
 
   return (
@@ -79,14 +90,27 @@ const Featured = () => {
         } rounded-lg shadow-lg p-6 w-full max-w-4xl`}
       >
         <div className="featured-item-details mb-4 text-center">
-          <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-          <p className="text-lg mb-2">{description}</p>
-          <p className="text-lg font-bold">Price: ${price_per_month}</p>
+          <h3 className="text-2xl font-semibold mb-2">
+            {city}, {area}
+          </h3>
+          <p className="text-lg mb-2">Description: {description}</p>
+          <p className="text-lg mb-2">Bedrooms: {bedrooms}</p>
+          <p className="text-lg mb-2">Bathrooms: {bathrooms}</p>
+          <p className="text-lg mb-2">Room Size: {room_size} sq.ft</p>
+          <p className="text-lg mb-2">Kitchen Rooms: {kitchen_rooms}</p>
+          <p className="text-lg mb-2">
+            Extra Room: {extra_room ? "Yes" : "No"}
+          </p>
+          <p className="text-lg mb-2">Rent: Rs.{rent}</p>
+          <p className="text-lg mb-2">Price Range: {price_range}</p>
+          <p className="text-lg mb-2">Amenities: {amenities}</p>
+          <p className="text-lg mb-2">Furnished: {furnished ? "Yes" : "No"}</p>
+          <p className="text-lg mb-2">Preferred Gender: {preferred_gender}</p>
         </div>
-        {photos.length > 0 ? (
+        {gallery.length > 0 ? (
           <div className="featured-item-photos mb-4 relative">
             <img
-              src={photos[currentPhotoIndex]}
+              src={gallery[currentPhotoIndex]}
               alt={`Room photo ${currentPhotoIndex + 1}`}
               className="w-full h-64 object-cover rounded-md"
             />
@@ -106,7 +130,9 @@ const Featured = () => {
             </div>
           </div>
         ) : (
-          <div className="text-gray-500 mb-4 text-center">No photos available</div>
+          <div className="text-gray-500 mb-4 text-center">
+            No photos available
+          </div>
         )}
         <div className="featured-item-controls flex justify-between">
           <button
@@ -128,4 +154,3 @@ const Featured = () => {
 };
 
 export default Featured;
-
