@@ -23,14 +23,14 @@ const Featured = () => {
 
   const handlePrevClick = () => {
     setCurrentRoomIndex((prevIndex) =>
-      prevIndex === 0 ? rooms.length - 1 : prevIndex - 1
+      prevIndex === 0 ? rooms?.length - 1 : prevIndex - 1
     );
     setCurrentPhotoIndex(0); // Reset photo index when changing rooms
   };
 
   const handleNextClick = () => {
     setCurrentRoomIndex((prevIndex) =>
-      prevIndex === rooms.length - 1 ? 0 : prevIndex + 1
+      prevIndex === rooms?.length - 1 ? 0 : prevIndex + 1
     );
     setCurrentPhotoIndex(0); // Reset photo index when changing rooms
   };
@@ -38,20 +38,20 @@ const Featured = () => {
   const handlePrevPhotoClick = () => {
     setCurrentPhotoIndex((prevIndex) =>
       prevIndex === 0
-        ? rooms[currentRoomIndex].gallery.length - 1
+        ? rooms[currentRoomIndex].gallery?.length - 1
         : prevIndex - 1
     );
   };
 
   const handleNextPhotoClick = () => {
     setCurrentPhotoIndex((prevIndex) =>
-      prevIndex === rooms[currentRoomIndex].gallery.length - 1
+      prevIndex === rooms[currentRoomIndex].gallery?.length - 1
         ? 0
         : prevIndex + 1
     );
   };
 
-  if (rooms.length === 0) {
+  if (rooms?.length === 0) {
     return (
       <div className="flex items-center justify-center w-full h-full">
         Loading...

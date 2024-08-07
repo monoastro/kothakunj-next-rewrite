@@ -53,8 +53,8 @@ const PropertyForm = () => {
       formPayload.append(key, value);
     });
 
-    const token = localStorage.getItem("accessToken");
-
+    const token = localStorage.getItem("authToken");
+    console.log(token);
     try {
       const response = await fetch("http://localhost:5000/api/v1/rooms", {
         method: "POST",
@@ -63,7 +63,10 @@ const PropertyForm = () => {
           // "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        
+
       });
+      console.log(response);
 
       if (response.ok) {
         alert("Property posted successfully!");

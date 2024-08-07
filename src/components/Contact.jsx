@@ -21,6 +21,7 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     setResponseMessage("");
+    console.log(formData);
     try {
       const response = await axios.post(
         "http://localhost:5000/api/v1/mail/send",

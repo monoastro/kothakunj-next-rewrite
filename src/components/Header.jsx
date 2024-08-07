@@ -13,10 +13,11 @@ import WhyUs from "./WhyUs";
 import SearchPage from "./searchPage";
 import PropertyForm from "./PropertyForm";
 import LoginPage from "./LoginPage";
+import { clearAuthToken } from "../context/AuthContext";
 
 function Header() {
   const { theme, toggleTheme } = useTheme();
-  const { authData, logout } = useAuth();
+  const { authData, setAuthToken } = useAuth();
   const [showProfile, setShowProfile] = useState(false);
   const [showSettingsDropdown, setShowSettingsDropdown] = useState(false);
   const [showLoginPage, setShowLoginPage] = useState(false);
@@ -187,7 +188,7 @@ function Header() {
                     <a
                       href="#logout"
                       className="block px-4 py-2 text-gray-800 hover:bg-gray-200"
-                      onClick={logout}
+                      onClick={clearAuthToken}
                     >
                       Logout
                     </a>

@@ -21,32 +21,38 @@ function LoginPage({ onLogin }) {
     const password = document.getElementById("password").value;
 
     // Check for the special login credentials
-    if (email === "ashishkandel127@gmail.com" && password === "ashishnaiho") {
-      setAuthToken("special-token"); // Set a token for the special login case
-      onLogin();
-      alert("Login successful");
-      return;
-    }
-
-    try {
-      const response = await fetch("http://localhost:5000/login", {
+    // if (email === "ashishkandel127@gmail.com" && password === "ashishnaiho") {
+    //   setAuthToken("special-token"); // Set a token for the special login case
+    //   onLogin();
+    //   alert("Login successful");
+    //   return;
+    // }
+    console.log(email, password)
+    try 
+    {
+      const response = await fetch("http://localhost:5000/api/v1/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
+      const data =  await response.json();
 
-      const data = await response.json();
+      console.log(data.data);
+      
 
       if (response.ok) {
-        setAuthToken(data.token); // Save token to context and localStorage
-        onLogin();
+        console.log("here")
+        setAuthToken(data.data.token); // Save token to context and localStorage
         alert("Login successful");
+        onLogin();
       } else {
-        setError(data.message || "Login failed");
+        setError(data.data.message || "Login failed");
       }
-    } catch (error) {
+    } 
+    catch (error) {
+
       setError("An error occurred. Please try again.");
     }
   };
