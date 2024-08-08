@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
-function Register() {
+export function Register() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-purple-100">
       <div className="bg-white p-6 rounded-md shadow-md w-3/5 h-5/6">
@@ -80,7 +80,7 @@ function Register() {
         </form>
         <p className="text-center text-gray-700 mt-6">
           Already have an account?{' '}
-          <Link to="/" className="text-blue-500">
+          <Link href="/" className="text-blue-500">
             Sign In
           </Link>
         </p>
@@ -88,5 +88,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;

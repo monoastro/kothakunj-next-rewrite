@@ -3,7 +3,7 @@
 // import SearchResults from './SearchResults';
 // import axios from 'axios';
 
-// const PropertySearch = () => {
+// export const PropertySearch = () => {
 //   const [hasSearched, setHasSearched] = useState(false);
 //   const [searchResults, setSearchResults] = useState([]);
 
@@ -25,4 +25,3 @@
 //   );
 // };
 
-// export default PropertySearch;

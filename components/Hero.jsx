@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Hero_image from "../public/Images/Hero_image.png";
 import { useTheme } from "../lib/ThemeContext";
 
-function Hero() {
+const Hero = () => {
   const { theme } = useTheme();
   const [isExpanded, setIsExpanded] = useState(false);
 

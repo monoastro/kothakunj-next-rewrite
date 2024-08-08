@@ -1,6 +1,15 @@
-import App from "../components/App";
+"use client";
+import Header from "@/components/Header";
+import Team from "@/components/Team";
+import Footer from "@/components/Footer";
 
-export default function Home()
+export default function LandingPage()
 {
-	return <App />
+  return (
+    <div>
+      <Header />
+      <Team />
+      <Footer />
+    </div>
+  );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../public/Images/logo.png";
 import { useTheme } from "../lib/ThemeContext";
 
-function Footer() {
+export default function Footer() {
   const { theme } = useTheme();
 
   return (
@@ -89,5 +89,3 @@ function Footer() {
     </footer>
   );
 }
-
-export default Footer;
