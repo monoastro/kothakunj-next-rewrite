@@ -59,9 +59,9 @@ const PropertyForm = () => {
 	console.log(formPayload);
     console.log(token);
     try {
-		const data = await postAPI("rooms", formPayload);
-      console.log(data);
-		return;
+		const data = await postAPI("rooms", formPayload, { "Content-Type": "application/json", Authorization: `Bearer ${token}`, });
+      	console.log(data);
+
 
       if (response.ok) {
         alert("Property posted successfully!");
@@ -79,7 +79,7 @@ const PropertyForm = () => {
   return (
     <div
       className={`w-full h-full mx-auto ${
-        theme === "dark" ? "bg-gray-800 text-white" : "bg-white"
+        theme === "dark" ? "bg-gray-800 text-white" : "bg-white text-black"
       } shadow-md rounded-lg`}
     >
       <div

@@ -34,6 +34,7 @@ const LoginPage = ({ onLogin, onClose }) =>
 			});
 
 			const responseJSON =  await response.json();
+			console.log(responseJSON.data);
 
 			if (response.ok)
 			{
