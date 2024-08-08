@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Hero_image from "../Images/Hero_image.png";
-import { useTheme } from "../ThemeContext";
+import Hero_image from "../public/Images/Hero_image.png";
+import { useTheme } from "../lib/ThemeContext";
 
 function Hero() {
   const { theme } = useTheme();

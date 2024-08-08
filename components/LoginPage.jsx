@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Logo from "../Images/logo.png";
+import Logo from "../public/Images/logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../lib/AuthContext";
 import { Link } from "react-router-dom";
 
 function LoginPage({ onLogin }) {

@@ -1,11 +1,11 @@
 import React, { useState, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-import Logo from "../Images/logo.png";
+import Logo from "../public/Images/logo.png";
 import ProfileCard from "./ProfileCard";
-import Rajesh_image from "../Images/Profile/RajeshHamal.jpeg";
-import { useTheme } from "../ThemeContext";
-import { useAuth } from "../context/AuthContext";
+import Rajesh_image from "../public/Images/Profile/RajeshHamal.jpeg";
+import { useTheme } from "../lib/ThemeContext";
+import { useAuth } from "../lib/AuthContext";
 import Contact from "./Contact";
 import Featured from "./Featured";
 import Hero from "./Hero";
@@ -13,7 +13,7 @@ import WhyUs from "./WhyUs";
 import SearchPage from "./searchPage";
 import PropertyForm from "./PropertyForm";
 import LoginPage from "./LoginPage";
-import { clearAuthToken } from "../context/AuthContext";
+import { clearAuthToken } from "../lib/AuthContext";
 
 function Header() {
   const { theme, toggleTheme } = useTheme();

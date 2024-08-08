@@ -1,9 +1,9 @@
+"use client";
 
 import React, { createContext, useContext, useState } from "react";
-
-const AuthContext = createContext();
 import { useNavigate } from 'react-router-dom';
 
+const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {

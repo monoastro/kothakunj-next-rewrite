@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import SearchForm from "./SearchForm";
 import SearchResults from "./SearchResults";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../lib/ThemeContext";
 
 const SearchPage = () => {
   const { theme } = useTheme();

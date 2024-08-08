@@ -1,22 +1,24 @@
+"use client";
+
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "./context/AuthContext";
-import Contact from "./components/Contact";
-import Featured from "./components/Featured";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import LandingPage from "./components/LandingPage";
-import LoginPage from "./components/LoginPage";
-import ProfileCard from "./components/ProfileCard";
-import PropertyForm from "./components/PropertyForm";
-import Register from "./components/Register";
-import SearchForm from "./components/SearchForm";
-import SearchResults from "./components/SearchResults";
-import Team from "./components/Team";
-import WhyUs from "./components/WhyUs";
+import { useAuth } from "../lib/AuthContext";
+import Contact from "./Contact";
+import Featured from "./Featured";
+import Footer from "./Footer";
+import Header from "./Header";
+import Hero from "./Hero";
+import LandingPage from "./LandingPage";
+import LoginPage from "./LoginPage";
+import ProfileCard from "./ProfileCard";
+import PropertyForm from "./PropertyForm";
+import Register from "./Register";
+import SearchForm from "./SearchForm";
+import SearchResults from "./SearchResults";
+import Team from "./Team";
+import WhyUs from "./WhyUs";
 
-function MyRoutes() {
+function ComponentRoutes() {
   const { authData, onLogin } = useAuth();
 
   return (
@@ -46,4 +48,4 @@ function MyRoutes() {
   );
 }
 
-export default MyRoutes;
+export default ComponentRoutes;

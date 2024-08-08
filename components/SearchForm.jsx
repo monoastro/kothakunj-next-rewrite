@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useTheme } from "../ThemeContext";
+import { useTheme } from "../lib/ThemeContext";
 
 const SearchForm = ({ onSearch }) => {
   const { theme } = useTheme();

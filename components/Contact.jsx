@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useTheme } from "../ThemeContext"; // Import the theme context
+import { useTheme } from "../lib/ThemeContext";
 import axios from "axios"; // Import axios for making HTTP requests
 
 const Contact = () => {

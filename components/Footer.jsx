@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../Images/logo.png";
-import { useTheme } from "../ThemeContext";
+import Logo from "../public/Images/logo.png";
+import { useTheme } from "../lib/ThemeContext";
 
 function Footer() {
   const { theme } = useTheme();

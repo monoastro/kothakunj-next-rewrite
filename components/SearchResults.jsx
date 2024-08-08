@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useTheme } from "../ThemeContext";
-
+import { useTheme } from "../lib/ThemeContext";
 const SearchResults = ({ results }) => {
   const { theme } = useTheme();
   const [selectedProperty, setSelectedProperty] = useState(null);
