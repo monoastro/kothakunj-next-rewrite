@@ -122,7 +122,7 @@ function Header() {
           theme === "dark" ? "bg-black text-white" : "bg-gray-100 text-gray-700"
         }`}
       >
-        <img className="w-20 h-20" src={Logo} alt="Logo" />
+        <img className="w-20 h-20" src={Logo.src} alt="Logo" />
         <nav className="space-x-6 flex items-center">
           <a
             href="#home"

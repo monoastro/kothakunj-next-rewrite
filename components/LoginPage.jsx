@@ -60,7 +60,7 @@ function LoginPage({ onLogin }) {
   return (
     <div className="container mx-auto mt-10 max-w-md pt-9 h-full">
       <div className="mx-auto">
-        <img src={Logo} alt="logo" className="mx-auto w-40" />
+        <img src={Logo.src} alt="logo" className="mx-auto w-40" />
       </div>
 
       <h1 className="text-3xl font-semibold mb-6 text-center pt-5 pb-10">

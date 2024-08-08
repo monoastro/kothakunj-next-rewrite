@@ -11,17 +11,17 @@ const teamMembers = [
   {
     name: 'Ashish Kandel',
     intro: 'Back-End Developer',
-    photo: Ashish
+    photo: Ashish.src
   },
   {
     name: 'Mukesh Bhatta',
     intro: 'Data-Base Developer',
-    photo: Mukesh
+    photo: Mukesh.src
   },
   {
     name: 'Jatin Raut',
     intro: 'Front-End Developer',
-    photo: Jatin
+    photo: Jatin.src
   }
 ];
 

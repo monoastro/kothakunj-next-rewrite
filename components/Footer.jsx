@@ -61,7 +61,7 @@ function Footer() {
 
         <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
           <div className="flex flex-col items-center md:items-start">
-            <img src={Logo} alt="Logo" className="w-24 h-auto mb-4" />
+            <img src={Logo.src} alt="Logo" className="w-24 h-auto mb-4" />
             <p className={`text-md mb-2 ${theme === 'dark' ? 'text-white' : 'text-white'} text-center md:text-left`}>
               Thapathali, Kathmandu
             </p>

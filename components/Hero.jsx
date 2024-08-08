@@ -28,7 +28,7 @@ function Hero() {
       <section className="flex flex-col md:flex-row items-center justify-center h-full w-full pr-10">
         <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
           <img
-            src={Hero_image}
+            src={Hero_image.src}
             alt="Hero"
             className="h-50 w-50 md:h-[50%] md:w-[50%] object-cover"
           />
@@ -61,3 +61,4 @@ function Hero() {
 }
 
 export default Hero;
+
