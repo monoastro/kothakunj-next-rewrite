@@ -34,11 +34,9 @@ const LoginPage = ({ onLogin, onClose }) =>
 			});
 
 			const responseJSON =  await response.json();
-			console.log(`Response received: ${responseJSON.data}\n`);
 
 			if (response.ok)
 			{
-				console.log("here")
 				setAuthToken(responseJSON.data.token);
 				alert("Login successful");
 				onLogin();
@@ -132,7 +130,6 @@ const LoginPage = ({ onLogin, onClose }) =>
 	);
 }
 
-//??? what the hell is this?
 LoginPage.propTypes =
 {
   onLogin: PropTypes.func.isRequired,

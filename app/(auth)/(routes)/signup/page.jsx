@@ -1,7 +1,9 @@
+"use client";
+
 import React from 'react';
 import Link from 'next/link';
 
-export function Register() {
+export default function Register() {
   return (
     <div className="flex justify-center items-center min-h-screen bg-purple-100">
       <div className="bg-white p-6 rounded-md shadow-md w-3/5 h-5/6">
@@ -88,3 +90,4 @@ export function Register() {
     </div>
   );
 }
+

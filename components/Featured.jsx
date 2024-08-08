@@ -15,11 +15,12 @@ const Featured = () => {
 			try
 			{
 				const response = await axios.get("http://localhost:5000/api/v1/rooms");
+				console.log(response.data);
 				setRooms(response.data.data);
 			}
 			catch (error)
 			{
-				console.error("Error fetching rooms");
+				console.error("Error fetching rooms:", error);
 			}
 		};
 		fetchRooms();
@@ -58,7 +59,8 @@ const Featured = () => {
 		);
 	};
 
-	if (rooms?.length === 0) {
+	if (rooms?.length === 0)
+	{
 		return ( <div className="flex items-center justify-center w-full h-full"> Loading... </div>);
 	}
 

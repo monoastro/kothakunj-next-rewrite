@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useTheme } from "../lib/ThemeContext";
+import { postAPI } from "@/lib/api";
+
 
 const PropertyForm = () => {
   const [province, setProvince] = useState("");
@@ -54,19 +56,12 @@ const PropertyForm = () => {
     });
 
     const token = localStorage.getItem("authToken");
+	console.log(formPayload);
     console.log(token);
     try {
-      const response = await fetch("http://localhost:5000/api/v1/rooms", {
-        method: "POST",
-        body: formPayload,
-        headers: {
-          // "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        
-
-      });
-      console.log(response);
+		const data = await postAPI("rooms", formPayload);
+      console.log(data);
+		return;
 
       if (response.ok) {
         alert("Property posted successfully!");
