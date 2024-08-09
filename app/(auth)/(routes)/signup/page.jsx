@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Register() {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-purple-100">
+    <div className="flex justify-center items-center min-h-screen bg-purple-100 text-black">
       <div className="bg-white p-6 rounded-md shadow-md w-3/5 h-5/6">
         <h2 className="text-2xl font-semibold mb-8">Register</h2>
         <form>
